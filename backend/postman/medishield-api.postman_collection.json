@@ -1,0 +1,248 @@
+{
+  "info": {
+    "name": "MediShield API",
+    "description": "REST API collection for MediShield patient and caretaker workflows",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register Patient",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Siri Bethi\",\n  \"email\": \"patient@medishield.com\",\n  \"phone\": \"+91 98765 43210\",\n  \"password\": \"Patient@123\",\n  \"role\": \"patient\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/v1/auth/register", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "auth", "register"] }
+          }
+        },
+        {
+          "name": "Login Patient",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"patient@medishield.com\",\n  \"password\": \"Patient@123\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/v1/auth/login", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "auth", "login"] }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "http://localhost:5000/api/v1/auth/me", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "auth", "me"] }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/v1/auth/refresh-token", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "auth", "refresh-token"] }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "http://localhost:5000/api/v1/auth/logout", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "auth", "logout"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "http://localhost:5000/api/v1/users/profile", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "users", "profile"] }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Siri Bethi\",\n  \"phone\": \"+91 98765 43210\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/v1/users/profile", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "users", "profile"] }
+          }
+        },
+        {
+          "name": "Get Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "http://localhost:5000/api/v1/users/dashboard", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "users", "dashboard"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Medicines",
+      "item": [
+        {
+          "name": "Get Medicines",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "http://localhost:5000/api/v1/medicines", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "medicines"] }
+          }
+        },
+        {
+          "name": "Create Medicine",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Amlodipine\",\n  \"strength\": \"5 mg\",\n  \"purpose\": \"Blood pressure\",\n  \"schedule\": \"09:00 AM\",\n  \"instructions\": \"Take after breakfast\",\n  \"slot\": 3,\n  \"storageType\": \"medicine_box\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/v1/medicines", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "medicines"] }
+          }
+        },
+        {
+          "name": "Update Medicine",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": \"08:30 AM\",\n  \"instructions\": \"Take with food and water\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/v1/medicines/{{medicineId}}", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "medicines", "{{medicineId}}"] }
+          }
+        },
+        {
+          "name": "Assign Medicine Slot",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slot\": 4\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/v1/medicines/{{medicineId}}/slot", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "medicines", "{{medicineId}}", "slot"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dose Events",
+      "item": [
+        {
+          "name": "Get Today's Doses",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "http://localhost:5000/api/v1/doses/today", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "doses", "today"] }
+          }
+        },
+        {
+          "name": "Get Dose History",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "http://localhost:5000/api/v1/doses/history", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "doses", "history"] }
+          }
+        },
+        {
+          "name": "Update Dose Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"takenConfirmed\",\n  \"note\": \"Dose confirmed by patient\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/v1/doses/{{doseEventId}}/status", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "doses", "{{doseEventId}}", "status"] }
+          }
+        },
+        {
+          "name": "Confirm Dose Taken",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "http://localhost:5000/api/v1/doses/{{doseEventId}}/confirm-taken", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "doses", "{{doseEventId}}", "confirm-taken"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Caretaker",
+      "item": [
+        {
+          "name": "Create Link Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": \"{{patientId}}\",\n  \"message\": \"I would like to track your medication schedule\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/api/v1/caretakers/requests", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "caretakers", "requests"] }
+          }
+        },
+        {
+          "name": "List Requests",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "http://localhost:5000/api/v1/caretakers/requests", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "caretakers", "requests"] }
+          }
+        },
+        {
+          "name": "Approve Request",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "http://localhost:5000/api/v1/caretakers/requests/{{requestId}}/approve", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "v1", "caretakers", "requests", "{{requestId}}", "approve"] }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "token", "value": "" },
+    { "key": "refreshToken", "value": "" },
+    { "key": "medicineId", "value": "" },
+    { "key": "doseEventId", "value": "" },
+    { "key": "patientId", "value": "" },
+    { "key": "requestId", "value": "" }
+  ]
+}
