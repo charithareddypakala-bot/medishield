@@ -1,11 +1,11 @@
 {
-    "name": "medishield1",
-    "short_name": "medishield1",
+    "name": "MediShield",
+    "short_name": "MediShield",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
+    "background_color": "#FFFFFF",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Smart medication management.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
